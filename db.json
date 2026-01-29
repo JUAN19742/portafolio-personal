@@ -1,0 +1,55 @@
+{
+  "posts": [
+    {
+        "id": 1,
+        "title": "Cómo construir una lista de tareas con React y JSON Server",
+        "date": "2025-04-10",
+        "content": "En este tutorial se explica paso a paso cómo construir una aplicación CRUD completa usando React y JSON Server.\n\n1. Creación del proyecto\nSe crea el proyecto usando Vite y se instalan las dependencias necesarias:\nnpm create vite@latest\nnpm install axios react-router-dom json-server\n\n2. Backend con JSON Server\nSe crea un archivo db.json con una colección de tareas o posts. JSON Server permite simular una API REST de forma rápida.\n\nEjemplo de estructura:\n{\n  \"tasks\": [\n    { \"id\": 1, \"title\": \"Aprender React\", \"completed\": false }\n  ]\n}\n\n3. Comunicación con Axios\nSe configura una instancia de Axios para centralizar las peticiones al backend.\n\nEjemplo:\nimport axios from 'axios';\n\nconst api = axios.create({\n  baseURL: 'http://localhost:3000'\n});\n\n4. Leer datos (READ)\nSe usa Axios junto con un custom hook para obtener los datos desde la API.\n\nEjemplo:\nconst { data, loading } = useFetch('/tasks');\n\n5. Crear datos (CREATE)\nPara crear una nueva tarea se usa una petición POST con Axios.\n\nEjemplo:\napi.post('/tasks', { title: nuevaTarea, completed: false });\n\n6. Actualizar datos (UPDATE)\nPara editar una tarea se utiliza el método PUT o PATCH.\n\nEjemplo:\napi.put(`/tasks/${id}`, { completed: true });\n\n7. Eliminar datos (DELETE)\nPara eliminar una tarea se usa el método DELETE.\n\nEjemplo:\napi.delete(`/tasks/${id}`);\n\n8. Navegación con React Router\nReact Router permite navegar entre la lista de tareas, el formulario de creación y la vista de edición.\n\nEjemplo:\n<Route path=\"/tasks\" element={<Tasks />} />\n<Route path=\"/tasks/:id\" element={<EditTask />} />\n\nCon estos pasos se obtiene una aplicación CRUD funcional usando React, Axios, custom hooks y React Router."
+    },
+    {
+      "id": 2,
+      "title": "Análisis de la propuesta Temporal en TC39",
+      "date": "2025-04-12",
+      "content": "Temporal es una propuesta activa del comité TC39 que busca mejorar el manejo de fechas y horas en JavaScript, solucionando las limitaciones del objeto Date.\n\nEl principal problema que resuelve es la ambigüedad en zonas horarias y la dificultad para trabajar con fechas complejas.\n\nTemporal introduce nuevos objetos como PlainDate, PlainTime y ZonedDateTime, los cuales permiten trabajar con fechas de forma más clara y segura.\n\nEsta propuesta es relevante para el futuro de JavaScript porque mejora la precisión y legibilidad del código relacionado con fechas.\n\nDesde un punto de vista personal, Temporal es muy útil y necesaria, aunque puede requerir una curva de aprendizaje inicial para desarrolladores que están acostumbrados a Date."
+    }
+  ],
+
+  "experiencia": [
+    {
+      "nombre": "Juan Sebastián Rueda Vilatuña",
+      "email": "juanse.rueda1@gmail.com",
+      "telefono": "+593 98 224 7811",
+      "direccion": "José Egusquiza y José Azañero",
+      "resumen": "Desarrollador de software en formación con experiencia en proyectos web y aplicaciones de cálculo. Competente en desarrollo frontend y backend, diseño de bases de datos y automatización de procesos con Python. Orientado a buenas prácticas de desarrollo, calidad de código y experiencia de usuario.",
+      "estudios": [
+        "Tecnología en Desarrollo de Software - PUCE",
+        "Pontificia Universidad Católica del Ecuador — Estudiante"
+      ],
+      "habilidades": [
+        { "nombre": "JavaScript", "nivel": 80 },
+        { "nombre": "Python", "nivel": 82 },
+        { "nombre": "SQL", "nivel": 70 }
+      ],
+      "experienciaLaboral": [
+        {
+          "titulo": "Sitio web para emprendimiento de compresas terapéuticas",
+          "descripcion": "Diseño e implementación del sitio web informativo con catálogo de productos y formulario de contacto. Tecnologías: HTML, CSS, JavaScript."
+          
+        },
+        {
+          "titulo": "🎬 Página web para cine (proyecto avanzado)",
+          "descripcion": "Desarrollo de plataforma para gestión de cartelera y películas con backend y base de datos. Tecnologías: HTML, CSS, JavaScript, SQL."
+        },
+        {
+          "titulo": "🍷 Página web informativa para licorería",
+          "descripcion": "Implementación rápida de sitio para presencia online y catálogo básico. Uso práctico de HTML/CSS/JS."
+        },
+        {
+          "titulo": "🧠 Herramientas en Python",
+          "descripcion": "Desarrollo de calculadora de funciones matemáticas y solucionador de sistemas de ecuaciones con énfasis en precisión numérica."
+        }
+      ]
+    }
+
+  ]
+}
