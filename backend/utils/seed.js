@@ -267,15 +267,14 @@ const seedDatabase = async () => {
     console.log('💼 Información de CV creada');
 
     console.log(`
-╔════════════════════════════════════════════════════════╗
-║                                                        ║
-║   ✅ Base de datos poblada exitosamente               ║
-║                                                        ║
-║   Credenciales de admin:                              ║
-║   Email: juanse.rueda1@gmail.com                      ║
-║   Password: Admin123!                                 ║
-║                                                        ║
-╚════════════════════════════════════════════════════════╝
+
+                                                       
+ Base de datos poblada exitosamente               
+                                                       
+  Credenciales de admin:                              
+  Email: juanse.rueda1@gmail.com                      
+  Password: Admin123!                                 
+
     `);
 
     process.exit(0);
