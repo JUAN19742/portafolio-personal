@@ -625,5 +625,3 @@ La confianza de tus usuarios depende de qué tan bien protejas sus datos. Invier
 - MDN Web Security
 
 ---
-
-**Palabras clave**: autenticación Node.js, JWT, seguridad backend, bcrypt, OAuth 2.0, Express security, OWASP

@@ -60,25 +60,46 @@ const postSchema = new mongoose.Schema(
 postSchema.index({ title: 'text', content: 'text', tags: 'text' });
 
 // Middleware para generar slug antes de guardar
-postSchema.pre('save', function (next) {
-  if (this.isModified('title') && !this.slug) {
-    this.slug = this.title
+postSchema.pre('save', async function (next) {
+  // Generar slug si no existe (ya sea nuevo documento o si se modificó el título)
+  if (!this.slug || this.isModified('title')) {
+    let baseSlug = this.title
       .toLowerCase()
       .trim()
       .replace(/[^\w\s-]/g, '')
       .replace(/[\s_-]+/g, '-')
       .replace(/^-+|-+$/g, '');
+    
+    // Asegurar que el slug sea único
+    let slug = baseSlug;
+    let counter = 1;
+    
+    // Verificar si ya existe este slug
+    while (await mongoose.models.Post.findOne({ slug: slug, _id: { $ne: this._id } })) {
+      slug = `${baseSlug}-${counter}`;
+      counter++;
+    }
+    
+    this.slug = slug;
   }
 
   // Generar excerpt si no existe
-  if (this.isModified('content') && !this.excerpt) {
-    this.excerpt = this.content.substring(0, 200) + '...';
+  if (!this.excerpt || this.isModified('content')) {
+    // Limpiar markdown básico y obtener texto plano
+    const plainText = this.content
+      .replace(/#{1,6}\s/g, '')  // Remover headers
+      .replace(/\*\*(.+?)\*\*/g, '$1')  // Remover bold
+      .replace(/\*(.+?)\*/g, '$1')  // Remover italic
+      .replace(/`{1,3}[^`]*`{1,3}/g, '')  // Remover code blocks
+      .trim();
+    
+    this.excerpt = plainText.substring(0, 200).trim() + '...';
   }
 
   // Calcular tiempo de lectura (aprox 200 palabras por minuto)
-  if (this.isModified('content')) {
-    const wordCount = this.content.split(/\s+/).length;
-    this.readingTime = Math.ceil(wordCount / 200);
+  if (!this.readingTime || this.isModified('content')) {
+    const wordCount = this.content.split(/\s+/).filter(Boolean).length;
+    this.readingTime = Math.max(1, Math.ceil(wordCount / 200));
   }
 
   next();

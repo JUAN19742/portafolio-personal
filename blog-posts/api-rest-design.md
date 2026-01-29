@@ -484,4 +484,3 @@ Recuerda que REST es una guía, no una regla estricta. Adapta estos principios a
 
 ---
 
-**Palabras clave**: REST API, diseño de APIs, HTTP, mejores prácticas backend, arquitectura de software, desarrollo web

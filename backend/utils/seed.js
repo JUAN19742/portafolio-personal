@@ -7,6 +7,7 @@ import Experience from '../models/Experience.js';
 // Cargar variables de entorno
 dotenv.config();
 
+
 // Datos de ejemplo
 const userData = {
   username: 'admin',
@@ -255,12 +256,15 @@ const seedDatabase = async () => {
     console.log('👤 Usuario admin creado');
 
     // Crear posts asignando el admin como autor
-    const postsWithAuthor = postsData.map((post) => ({
-      ...post,
-      author: admin._id,
-    }));
-    await Post.insertMany(postsWithAuthor);
-    console.log('📝 Posts creados');
+    // Usar create() en lugar de insertMany() para que se ejecuten los middlewares
+    console.log('📝 Creando posts...');
+    for (const postData of postsData) {
+      await Post.create({
+        ...postData,
+        author: admin._id,
+      });
+    }
+    console.log('📝 Posts creados exitosamente');
 
     // Crear experiencia/CV
     await Experience.create(experienceData);
