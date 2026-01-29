@@ -2,28 +2,6 @@
 
 API RESTful desarrollada con Express.js y MongoDB para gestionar un portafolio personal con sistema de autenticación, blog y curriculum vitae.
 
-## 📋 Tecnologías Utilizadas
-
-### Framework y Runtime
-- **Node.js** v18+ - Runtime de JavaScript
-- **Express.js** v4.18+ - Framework web minimalista y flexible
-
-### Base de Datos
-- **MongoDB** - Base de datos NoSQL
-- **Mongoose** v8+ - ODM (Object Document Mapper) para MongoDB
-
-### Autenticación y Seguridad
-- **JWT (jsonwebtoken)** - Tokens para autenticación
-- **bcryptjs** - Hash de contraseñas
-- **Helmet** - Headers de seguridad HTTP
-- **CORS** - Cross-Origin Resource Sharing
-- **express-rate-limit** - Limitación de peticiones
-- **express-validator** - Validación y sanitización de datos
-
-### Utilidades
-- **dotenv** - Variables de entorno
-- **morgan** - Logger HTTP
-
 ## 🗂️ Estructura del Proyecto
 
 ```
@@ -318,13 +296,6 @@ Datos sensibles almacenados en `.env`, no en el código.
 }
 ```
 
-## 🧪 Testing
-
-Para probar los endpoints, puedes usar:
-
-### Postman
-Importa la colección desde: [Link a colección]
-
 ### cURL
 
 ```bash
@@ -342,35 +313,6 @@ curl -X POST http://localhost:5000/api/posts \
   -H "Authorization: Bearer TU_TOKEN_AQUI" \
   -d '{"title":"Nuevo Post","content":"Contenido del post..."}'
 ```
-
-## 🚢 Despliegue
-
-### Render.com (Recomendado)
-
-1. Crea una cuenta en https://render.com
-2. Conecta tu repositorio de GitHub
-3. Crea un nuevo Web Service
-4. Configura:
-   - Build Command: `npm install`
-   - Start Command: `npm start`
-   - Agrega las variables de entorno
-5. Deploy
-
-### Railway.app
-
-1. Crea una cuenta en https://railway.app
-2. Crea un nuevo proyecto
-3. Conecta tu repositorio
-4. Configura las variables de entorno
-5. Deploy automático
-
-### Variables de Entorno en Producción
-
-Asegúrate de configurar:
-- `NODE_ENV=production`
-- `MONGODB_URI` (con la URI de MongoDB Atlas)
-- `JWT_SECRET` (genera uno nuevo y seguro)
-- `CORS_ORIGIN` (URL de tu frontend en producción)
 
 ## 📝 Justificación Técnica
 
@@ -419,19 +361,3 @@ kill -9 [PID]
 PORT=5001
 ```
 
-## 📚 Recursos Adicionales
-
-- [Documentación de Express](https://expressjs.com/)
-- [Documentación de Mongoose](https://mongoosejs.com/)
-- [Documentación de MongoDB](https://www.mongodb.com/docs/)
-- [JWT.io](https://jwt.io/)
-
-## 👨‍💻 Autor
-
-**Juan Sebastián Rueda Vilatuña**
-- Email: juanse.rueda1@gmail.com
-- GitHub: [@JUAN19742](https://github.com/JUAN19742)
-
-## 📄 Licencia
-
-MIT
